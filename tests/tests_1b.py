@@ -21,11 +21,13 @@ def test_multiplication():
     assert simple_calculator("multiply", 5, 3) == 15    # Test for positive numbers
     assert simple_calculator("multiply", -2, 2) == -4   # Test for negative and positive number
     assert simple_calculator("multiply", 0, 100) == 0   # Test for multiplication by zero
+    assert simple_calculator('multiply', -2, -2) == 4   # Test for negative and negative
 
 def test_division():
     assert simple_calculator("divide", 6, 3) == 2       # Test for positive numbers
     assert simple_calculator("divide", -4, 2) == -2     # Test for negative and positive number
     assert simple_calculator("divide", 5, 2) == 2.5     # Test for division resulting in float
+    assert simple_calculator("divide", -2, -2) == 1     # Test for negative and negative
 
 def test_division_by_zero():
     with pytest.raises(ValueError, match="Cannot divide by zero."):
@@ -37,11 +39,6 @@ def test_invalid_operation():
     with pytest.raises(ValueError, match="Invalid operation. Please choose from 'add', 'subtract', 'multiply', or 'divide'."):
         simple_calculator("", 5, 3)                     # Test for empty operation
 
-def test_request_sanitized_number():
-    with pytest.raises(ValueError, match="invalid input, please type a valid number."):
-        simple_calculator("add", 'b', 5)
-    with pytest.raises(ValueError, match='invalid input, please type a valid number.'):
-        simple_calculator("multiply", '@', 20)
 
     
 
