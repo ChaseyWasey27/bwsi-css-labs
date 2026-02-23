@@ -37,5 +37,13 @@ def test_invalid_operation():
     with pytest.raises(ValueError, match="Invalid operation. Please choose from 'add', 'subtract', 'multiply', or 'divide'."):
         simple_calculator("", 5, 3)                     # Test for empty operation
 
+def test_request_sanitized_number():
+    with pytest.raises(ValueError, match="invalid input, please type a valid number."):
+        simple_calculator("add", 'b', 5)
+    with pytest.raises(ValueError, match='invalid input, please type a valid number.'):
+        simple_calculator("multiply", '@', 20)
+
+    
+
 if __name__ == "__main__":
     pytest.main()
